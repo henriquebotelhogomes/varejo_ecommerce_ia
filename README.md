@@ -23,7 +23,7 @@ Este sistema foi construído para resolver problemas reais de adoção de LLMs n
 O projeto adota uma arquitetura modular para facilitar a manutenção e escalabilidade:
 ```
 📁 raiz/
-├── 📄 agente_sql_amazon.py   # Interface Principal (Streamlit) e Roteamento
+├── 📄 app.py                 # Interface Principal (Streamlit) e Roteamento
 ├── 📄 requirements.txt       # Dependências e Gestão de Pacotes
 ├── 📄 .env                   # Variáveis de Ambiente e Chaves (Não versionado)
 └── 📂 src/
@@ -73,7 +73,7 @@ GROQ_API_KEY=sua_chave_groq_aqui
 
 5. **Inicie a Aplicação**:
 ```
-streamlit run agente_sql_amazon.py
+streamlit run app.py
 ```
 
 _(Nota: Na primeira execução, o sistema fará o download da base de dados completa da Amazon, o que pode demorar alguns instantes.)_
