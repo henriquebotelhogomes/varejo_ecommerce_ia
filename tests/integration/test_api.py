@@ -81,4 +81,3 @@ def test_chat_stream_endpoint():
     assert "data: " in content
     assert '"type": "init"' in content
     assert '"type": "end"' in content
-

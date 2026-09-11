@@ -122,4 +122,3 @@ Input do utilizador
 | Sem auth (app local) | OAuth2/OIDC + RBAC + RLS multi-tenant |
 
 > O MVP **já tem o instinto certo de segurança**. Esta estratégia o transforma em garantia verificável.
-

@@ -153,4 +153,3 @@ Internet ─► CDN/WAF ─► Load Balancer ─► [React SPA estático]
 - **Containerizado** (Docker), orquestrado em **Kubernetes** ou **Cloud Run**.
 - **IaC** com Terraform; ambientes `dev`/`staging`/`prod` idênticos.
 - **Deploys canário** com feature flags e rollback automático por SLO.
-

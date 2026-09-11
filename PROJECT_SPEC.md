@@ -34,7 +34,7 @@ flowchart TB
         SelfHealingNode["Nó: Auto-Correção de Query"]
         HITLNode["Nó: Human-in-the-Loop interrupt()"]
         Synthesizer["Nó: Síntese de Negócios & NBA"]
-        
+
         StateGraphEngine --> IntentRouter
         IntentRouter --> NL2SQL
         IntentRouter --> VectorRAG
@@ -85,20 +85,20 @@ sequenceDiagram
     User->>FE: Pergunta: "Quais as 5 categorias com pior média de estrelas?"
     FE->>API: POST /api/v1/chat (stream=true)
     API->>LG: graph.ainvoke(initial_state)
-    
+
     LG->>LLM: Classificar intenção
     LLM-->>LG: Intenção: QUANTITATIVE_SQL
-    
+
     LG->>LLM: Gerar Query SQL (com schema injetado)
     LLM-->>LG: Query SQL gerada
-    
+
     LG->>AST: Validar Query (Apenas SELECT, Proibir DROP/DELETE, Injetar LIMIT)
     alt Query Inválida / Erro Sintático
         AST-->>LG: Falha de Validação
         LG->>LLM: Self-Healing: Corrigir Query com log de erro do parser
         LLM-->>LG: Query Corrigida
     end
-    
+
     alt Requer Aprovação Humana (HITL ativo)
         LG-->>API: Status: PENDING_APPROVAL (interrupt)
         API-->>FE: Evento SSE: Aprovação Necessária + SQL Preview
@@ -107,13 +107,13 @@ sequenceDiagram
         FE->>API: POST /api/v1/hitl/approve (thread_id)
         API->>LG: graph.ainvoke(Command(resume=True))
     end
-    
+
     LG->>DB: Executa SELECT validado
     DB-->>LG: Retorna DataFrame / Resultado Tabular
-    
+
     LG->>LLM: Sintetizar Insights Executivos + 3 Próximas Análises (NBA)
     LLM-->>LG: Resposta rica formatada em Markdown
-    
+
     LG-->>API: Estado Final Completo
     API-->>FE: Streaming final com Dados, Gráfico e Síntese
     FE-->>User: Visualização interativa na tela

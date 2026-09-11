@@ -50,4 +50,3 @@ Um **Copiloto de Dados (Agentic Text-to-SQL)** construído em Streamlit, que per
 ---
 
 > _Convenção de versionamento desta documentação: cada arquivo declara `status` e `versão` no topo. Mudanças relevantes de arquitetura devem virar um ADR no documento 11._
-

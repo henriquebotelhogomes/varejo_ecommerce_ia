@@ -171,4 +171,3 @@ PR ──► Lint + Type-check + Unit ──► Build ──► Integration + Ev
 - **Quality gates:** cobertura mínima, evals de IA acima de threshold, SAST/dependency scan.
 - **Feature flags** para releases progressivas.
 - **Migrations versionadas** (Alembic).
-

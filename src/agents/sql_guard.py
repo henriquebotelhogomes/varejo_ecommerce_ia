@@ -143,7 +143,7 @@ def validate_and_sanitize_sql(
     root_ast = parsed_statements[0]
 
     # 3. Validar se o comando raiz é estritamente uma seleção
-    if not isinstance(root_ast, (exp.Select, exp.Union)):
+    if not isinstance(root_ast, exp.Select | exp.Union):
         detected = "STRUCT" if isinstance(root_ast, exp.Struct) else root_ast.key.upper()
         return SQLValidationResult(
             is_valid=False,

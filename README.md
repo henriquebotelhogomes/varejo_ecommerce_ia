@@ -14,14 +14,14 @@
 [![Tests: Pytest](https://img.shields.io/badge/Tests-35%2F35%20Passing-22C55E.svg)](https://docs.pytest.org)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 
-**Plataforma Fullstack de Inteligência Analítica, Governança e Text-to-SQL sobre 204.382 avaliações reais da Amazon.**  
+**Plataforma Fullstack de Inteligência Analítica, Governança e Text-to-SQL sobre 204.382 avaliações reais da Amazon.**
 Combina **Motor Colunar DuckDB (SIMD)**, **Camada Semântica (Metric Layer)**, **AST Guardrails Determinísticos**, **Tri-Tiering Agnóstico de LLMs**, **Streaming em Tempo Real (SSE)**, **Modal de Inspeção de Linhagem** e **Interface Executiva em Tema Claro**.
 
 ---
 
 ### 🌐 Aplicação Ativa em Produção Online (Google Cloud Run)
-🔗 **URL Oficial:** [https://retailsense-ai-197215016090.us-central1.run.app](https://retailsense-ai-197215016090.us-central1.run.app)  
-📚 **Documentação Interativa (Scalar OpenAPI):** [https://retailsense-ai-197215016090.us-central1.run.app/docs](https://retailsense-ai-197215016090.us-central1.run.app/docs)  
+🔗 **URL Oficial:** [https://retailsense-ai-197215016090.us-central1.run.app](https://retailsense-ai-197215016090.us-central1.run.app)
+📚 **Documentação Interativa (Scalar OpenAPI):** [https://retailsense-ai-197215016090.us-central1.run.app/docs](https://retailsense-ai-197215016090.us-central1.run.app/docs)
 *(Operando em arquitetura Serverless com política de Scale-to-Zero e Custo Perpétuo de $0.00/mês)*
 
 ---

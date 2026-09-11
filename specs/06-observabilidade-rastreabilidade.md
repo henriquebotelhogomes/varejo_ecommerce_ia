@@ -113,4 +113,3 @@ Pergunta do utilizador
 | Custo estimado vs. GPT-4o | Dashboard FinOps por tenant com alertas |
 
 > A **filosofia de transparência já existe no MVP** — esta estratégia apenas a leva a um padrão de produção.
-

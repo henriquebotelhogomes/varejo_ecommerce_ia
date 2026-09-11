@@ -152,4 +152,3 @@ atualizado: 2026-06-22
 - Demonstra domínio do **ecossistema React moderno** (TS, Tailwind, shadcn, TanStack, Framer Motion).
 - Mostra **sensibilidade de produto e design**, não só de código.
 - Transforma features de governança (HITL, FinOps, self-heal) em **momentos de UX memoráveis** — exatamente o tipo de detalhe que diferencia um portfólio sénior.
-

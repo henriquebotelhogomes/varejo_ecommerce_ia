@@ -153,4 +153,3 @@ DRAFTED ──► PENDING_APPROVAL ──► APPROVED ──► EXECUTING ──
 - Treino/fine-tuning de modelos próprios.
 - Conectores em tempo real para todos os data warehouses (faseado — ver roadmap).
 - App mobile nativo (web responsivo primeiro).
-

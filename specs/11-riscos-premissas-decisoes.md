@@ -108,4 +108,3 @@ atualizado: 2026-06-22
 ---
 
 > **Nota de manutenção:** novas decisões arquiteturais relevantes devem ser adicionadas como `ADR-00N` aqui, com data e status (Proposto / Aceito / Substituído).
-

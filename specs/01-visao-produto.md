@@ -122,4 +122,3 @@ Uma camada conversacional **governada** sobre os dados do retalhista:
 ## 9. Por que isto impressiona recrutadores
 
 Este documento demonstra que o autor pensa para além do código: **entende o problema de negócio, o mercado, a monetização e o trade-off entre IA e governança** — competências de um engenheiro sénior / staff que startups globais valorizam.
-

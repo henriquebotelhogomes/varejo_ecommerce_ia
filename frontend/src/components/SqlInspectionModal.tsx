@@ -31,7 +31,7 @@ export const SqlInspectionModal: React.FC<SqlInspectionModalProps> = ({
   };
 
   return (
-    <div 
+    <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs animate-in fade-in duration-150"
       onClick={onClose}
     >

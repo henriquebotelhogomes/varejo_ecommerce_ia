@@ -132,4 +132,3 @@ O │
 - [ ] Demo pública (deploy) ou vídeo curto do fluxo conversacional.
 - [ ] Observabilidade visível (screenshot de dashboards).
 - [ ] ADRs explicando decisões (doc 11).
-

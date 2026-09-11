@@ -3,6 +3,7 @@
 import asyncio
 import json
 import uuid
+from typing import Any
 
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import StreamingResponse
@@ -102,6 +103,7 @@ async def process_chat_stream(payload: ChatRequest) -> StreamingResponse:
                 for node_name, node_output in chunk.items():
                     final_state.update(node_output)
 
+                    step_data: dict[str, Any]
                     if node_name == "router":
                         intent_val = node_output.get("intent", "QUANTITATIVE_SQL")
                         step_data = {

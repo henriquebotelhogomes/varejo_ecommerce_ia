@@ -111,4 +111,3 @@ Estratégia de redução de custo (ordem de impacto):
 | MVP SaaS | dezenas de tenants | Monólito modular + Redis + workers |
 | Crescimento | centenas de tenants | Read replicas, semantic cache, HPA agressivo |
 | Escala | milhares | Extração de serviços (IA Orchestrator), warehouse, multi-região |
-

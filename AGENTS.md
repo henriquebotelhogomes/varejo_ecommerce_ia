@@ -19,12 +19,12 @@ class AgentState(TypedDict):
     """Estado global compartilhado entre os nós do LangGraph."""
     # Histórico de mensagens com reducer oficial de concatenação delta
     messages: Annotated[list[BaseMessage], add_messages]
-    
+
     # Intenção classificada da pergunta atual
     user_query: str
     intent: Literal["QUANTITATIVE_SQL", "QUALITATIVE_RAG", "HYBRID", "CASUAL_CHAT"]
     fast_path_matched: bool
-    
+
     # Artefatos da Trilha SQL (DuckDB Engine)
     sql_query: Optional[str]
     sql_valid: bool
@@ -32,18 +32,18 @@ class AgentState(TypedDict):
     retry_count: int
     sql_result: Optional[list[dict[str, Any]]]
     applied_metrics: list[str]  # Métricas identificadas pela Metric Layer
-    
+
     # Artefatos da Trilha Vetorial (RAG Híbrido)
     vector_contexts: list[str]
-    
+
     # Governança e Human-in-the-Loop
     requires_human_approval: bool
     is_approved: bool
-    
+
     # Síntese Executiva Final
     final_response: Optional[str]
     next_best_actions: list[str]
-    
+
     # Auditoria e FinOps
     token_usage: dict[str, int]
     estimated_cost_usd: float
@@ -98,7 +98,7 @@ class ExecutiveSummaryOutput(BaseModel):
     executive_summary: str = Field(description="Resposta executiva, objetiva e contextualizada com os dados.")
     key_findings: list[str] = Field(min_length=2, max_length=4, description="Bullet points com os achados mais críticos.")
     suggested_actions: list[NextBestActionItem] = Field(
-        min_length=3, max_length=3, 
+        min_length=3, max_length=3,
         description="Exatamente 3 próximas perguntas analíticas recomendadas."
     )
 ```

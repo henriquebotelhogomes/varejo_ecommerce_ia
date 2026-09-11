@@ -100,4 +100,3 @@ Uma funcionalidade só está "pronta" quando:
 - [ ] Acessibilidade (FE) verificada.
 - [ ] Documentação/ADR atualizada quando há decisão arquitetural.
 - [ ] Feature flag e plano de rollback definidos.
-

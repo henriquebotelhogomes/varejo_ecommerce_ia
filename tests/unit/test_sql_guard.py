@@ -12,6 +12,7 @@ def test_valid_aggregation_query():
     assert "avaliacoes" in res.tables_used
     assert res.error_message is None
     # Como é agregação pura sem agrupamento, não precisa de LIMIT forçado
+    assert res.sanitized_sql is not None
     assert "LIMIT" not in res.sanitized_sql.upper()
 
 
@@ -21,6 +22,7 @@ def test_valid_select_injects_limit():
     res = validate_and_sanitize_sql(query)
     assert res.is_valid is True
     assert res.is_aggregation is False
+    assert res.sanitized_sql is not None
     assert "LIMIT 100" in res.sanitized_sql.upper()
 
 
@@ -29,6 +31,7 @@ def test_valid_select_preserves_lower_limit():
     query = "SELECT parent_asin, rating FROM avaliacoes LIMIT 5"
     res = validate_and_sanitize_sql(query)
     assert res.is_valid is True
+    assert res.sanitized_sql is not None
     assert "LIMIT 5" in res.sanitized_sql.upper()
 
 
@@ -37,6 +40,7 @@ def test_valid_select_caps_excessive_limit():
     query = "SELECT parent_asin, rating FROM avaliacoes LIMIT 500"
     res = validate_and_sanitize_sql(query, max_limit=100)
     assert res.is_valid is True
+    assert res.sanitized_sql is not None
     assert "LIMIT 100" in res.sanitized_sql.upper()
 
 
@@ -45,6 +49,7 @@ def test_block_drop_table():
     query = "DROP TABLE avaliacoes"
     res = validate_and_sanitize_sql(query)
     assert res.is_valid is False
+    assert res.error_message is not None
     assert (
         "Apenas comandos SELECT são autorizados" in res.error_message or "DROP" in res.error_message
     )
@@ -55,6 +60,7 @@ def test_block_delete():
     query = "DELETE FROM avaliacoes WHERE rating = 1"
     res = validate_and_sanitize_sql(query)
     assert res.is_valid is False
+    assert res.error_message is not None
     assert "Apenas comandos SELECT" in res.error_message or "DELETE" in res.error_message
 
 
@@ -84,6 +90,7 @@ def test_block_stacked_queries():
     query = "SELECT * FROM avaliacoes; DROP TABLE avaliacoes;"
     res = validate_and_sanitize_sql(query)
     assert res.is_valid is False
+    assert res.error_message is not None
     assert "Múltiplas instruções" in res.error_message
 
 
@@ -92,6 +99,7 @@ def test_block_unauthorized_table():
     query = "SELECT * FROM usuarios_secretos"
     res = validate_and_sanitize_sql(query, allowed_tables={"avaliacoes"})
     assert res.is_valid is False
+    assert res.error_message is not None
     assert "não pertence à whitelist" in res.error_message
 
 
@@ -107,4 +115,5 @@ def test_empty_query():
     """Rejeita strings vazias."""
     res = validate_and_sanitize_sql("   ")
     assert res.is_valid is False
+    assert res.error_message is not None
     assert "vazia" in res.error_message
