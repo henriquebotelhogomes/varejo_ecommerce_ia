@@ -6,6 +6,8 @@ geradas por LLMs antes da execução no banco de dados.
 
 from __future__ import annotations
 
+import ast
+import json
 import re
 
 import sqlglot
@@ -23,33 +25,30 @@ class SQLValidationResult(BaseModel):
         default=None,
         description="Query SQL sanitizada, formatada e com injeção de limites de segurança.",
     )
-    error_message: str | None = Field(
-        default=None,
-        description="Descrição detalhada do motivo de rejeição em caso de falha de validação.",
-    )
     is_aggregation: bool = Field(
         default=False,
-        description="Indica se a query realiza operações agregadas (COUNT, AVG, SUM, MIN, MAX).",
+        description="Indica se a query realiza agregação (COUNT, AVG, SUM, etc.).",
     )
     tables_used: list[str] = Field(
-        default_factory=list, description="Lista de tabelas identificadas e validadas na consulta."
+        default_factory=list, description="Lista de tabelas identificadas na consulta."
+    )
+    error_message: str | None = Field(
+        default=None, description="Mensagem de erro detalhada em caso de rejeição da query."
     )
 
 
-# Comandos e nós da AST estritamente proibidos por motivos de segurança
+# Lista restrita de expressões expressamente proibidas
 FORBIDDEN_EXPRESSIONS: tuple[type[exp.Expression], ...] = (
     exp.Drop,
     exp.Delete,
     exp.Update,
     exp.Insert,
     exp.Alter,
-    exp.Command,
-    exp.Transaction,
+    exp.TruncateTable,
     exp.Create,
-    exp.Pragma,
 )
 
-# Funções agregadoras comuns
+# Funções analíticas e agregadas autorizadas
 AGGREGATE_FUNCTIONS: tuple[type[exp.Expression], ...] = (
     exp.Count,
     exp.Avg,
@@ -63,27 +62,45 @@ DEFAULT_ALLOWED_TABLES: set[str] = {"avaliacoes"}
 
 
 def _clean_markdown(query: str) -> str:
-    """Remove eventuais blocos de código markdown residuais ou JSON envolto."""
+    """Remove eventuais blocos de código markdown residuais ou JSON/dict envolto."""
     cleaned = query.strip()
     if cleaned.startswith("```"):
         cleaned = re.sub(r"^```(?:sql|json)?\s*", "", cleaned, flags=re.IGNORECASE)
         cleaned = re.sub(r"\s*```$", "", cleaned)
         cleaned = cleaned.strip()
 
-    # Se a string recebida for um JSON contendo 'sql_query', extrai o comando SQL real
+    # Se a string recebida for um JSON ou dicionário Python contendo 'sql_query'
     if cleaned.startswith("{") and cleaned.endswith("}"):
         try:
-            import json
-
             data = json.loads(cleaned)
             if (
                 isinstance(data, dict)
                 and "sql_query" in data
                 and isinstance(data["sql_query"], str)
             ):
-                cleaned = data["sql_query"].strip()
+                return data["sql_query"].strip()
         except Exception:
             pass
+
+        try:
+            data_py = ast.literal_eval(cleaned)
+            if (
+                isinstance(data_py, dict)
+                and "sql_query" in data_py
+                and isinstance(data_py["sql_query"], str)
+            ):
+                return data_py["sql_query"].strip()
+        except Exception:
+            pass
+
+        # Regex fallback para extração de campo sql_query
+        match = re.search(
+            r"['\"]sql_query['\"]\s*:\s*['\"](.*?)['\"](?:\s*,\s*['\"]|\s*})",
+            cleaned,
+            re.DOTALL,
+        )
+        if match:
+            return match.group(1).strip()
 
     return cleaned.strip()
 
@@ -113,13 +130,6 @@ def validate_and_sanitize_sql(
     clean_sql = _clean_markdown(sql_query)
     tables_whitelist = {t.lower() for t in (allowed_tables or DEFAULT_ALLOWED_TABLES)}
 
-    # Bloqueio preventivo: Se for um JSON literal que sobrou
-    if clean_sql.startswith("{") and clean_sql.endswith("}"):
-        return SQLValidationResult(
-            is_valid=False,
-            error_message="Operação não permitida: Apenas comandos SELECT são autorizados. Detectado: STRUCT.",
-        )
-
     # 1. Parsing da AST
     try:
         parsed_statements = sqlglot.parse(clean_sql, read=dialect)
@@ -141,6 +151,25 @@ def validate_and_sanitize_sql(
         )
 
     root_ast = parsed_statements[0]
+
+    # Se porventura o parser DuckDB interpretou como exp.Struct (dicionário), desempacota o campo sql_query
+    if isinstance(root_ast, exp.Struct):
+        for prop in root_ast.expressions:
+            if (
+                isinstance(prop, exp.PropertyEQ)
+                and isinstance(prop.this, exp.Identifier)
+                and prop.this.this.lower() == "sql_query"
+                and isinstance(prop.expression, exp.Literal)
+            ):
+                inner_sql = prop.expression.this
+                try:
+                    inner_stmts = sqlglot.parse(inner_sql, read=dialect)
+                    if inner_stmts and inner_stmts[0] is not None:
+                        root_ast = inner_stmts[0]
+                        clean_sql = inner_sql
+                        break
+                except Exception:
+                    pass
 
     # 3. Validar se o comando raiz é estritamente uma seleção
     if not isinstance(root_ast, exp.Select | exp.Union):
