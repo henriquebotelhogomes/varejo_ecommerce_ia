@@ -1,4 +1,4 @@
-# 🛒 RetailSense AI: Enterprise Conversational Analytics & Text-to-SQL
+# RetailSense AI: Enterprise Conversational Analytics & Text-to-SQL
 
 <div align="center">
 
@@ -19,14 +19,14 @@ Combina **Motor Colunar DuckDB (SIMD)**, **Camada Semântica (Metric Layer)**, *
 
 ---
 
-### 🌐 Aplicação Ativa em Produção Online (Google Cloud Run)
-🔗 **URL Oficial:** [https://retailsense-ai-197215016090.us-central1.run.app](https://retailsense-ai-197215016090.us-central1.run.app)
-📚 **Documentação Interativa (Scalar OpenAPI):** [https://retailsense-ai-197215016090.us-central1.run.app/docs](https://retailsense-ai-197215016090.us-central1.run.app/docs)
+### Aplicação Ativa em Produção Online (Google Cloud Run)
+* **URL Oficial:** [https://retailsense-ai-197215016090.us-central1.run.app](https://retailsense-ai-197215016090.us-central1.run.app)
+* **Documentação Interativa (Scalar OpenAPI):** [https://retailsense-ai-197215016090.us-central1.run.app/docs](https://retailsense-ai-197215016090.us-central1.run.app/docs)
 *(Operando em arquitetura Serverless com política de Scale-to-Zero e Custo Perpétuo de $0.00/mês)*
 
 ---
 
-### 🎬 Demonstração em Tempo Real da Aplicação
+### Demonstração em Tempo Real da Aplicação
 
 ![RetailSense AI Live Demo](screenshots/demo.gif)
 
@@ -34,21 +34,21 @@ Combina **Motor Colunar DuckDB (SIMD)**, **Camada Semântica (Metric Layer)**, *
 
 ---
 
-## 📸 Galeria de Telas da Aplicação
+## Galeria de Telas da Aplicação
 
 <div align="center">
 
-| 📊 Painel Executivo de Catálogo & KPIs | 💬 Console Analítico & Copiloto NL2SQL |
+| Painel Executivo de Catálogo & KPIs | Console Analítico & Copiloto NL2SQL |
 | :---: | :---: |
 | ![Painel Executivo](screenshots/01_dashboard_overview.png) | ![Console Analítico](screenshots/02_chat_exploration.png) |
 | *Monitoramento multidimensional com 4 gráficos e métricas DuckDB em sub-15ms* | *Síntese executiva limpa com Next Best Actions e streaming progressivo SSE* |
 
-| 🔍 Auditoria de Linhagem & Modal de Inspeção SQL | 💰 Governança de Custos & FinOps |
+| Auditoria de Linhagem & Modal de Inspeção SQL | Governança de Custos & FinOps |
 | :---: | :---: |
 | ![Modal de Inspeção SQL](screenshots/03_sql_inspection_modal.png) | ![Auditoria FinOps](screenshots/04_finops_auditing.png) |
 | *Inspeção sob demanda (DuckDB OLAP, AST Guardrail validado e cópia em 1 clique)* | *Comprovação de >90% de economia com roteamento inteligente agnóstico* |
 
-| 📚 Documentação Interativa de API (Scalar) |
+| Documentação Interativa de API (Scalar) |
 | :---: |
 | ![Scalar Docs](screenshots/05_scalar_api_docs.png) |
 | *Documentação OpenAPI viva padrão Stripe/Vercel servida em `/docs`* |
@@ -57,120 +57,120 @@ Combina **Motor Colunar DuckDB (SIMD)**, **Camada Semântica (Metric Layer)**, *
 
 ---
 
-## 🎯 Por que o RetailSense AI? (Diferenciais de Engenharia Sênior)
+## Por que o RetailSense AI? (Diferenciais de Engenharia Sênior)
 
 Diferente de protótipos acadêmicos, chatbots simplistas ou dashboards monolíticos legados (como Streamlit), o **RetailSense AI v2.0** foi projetado sob a governança técnica de **Engenharia de Analytics e Inteligência Artificial de Padrão Internacional**:
 
-1. ⚡ **Motor Analítico Colunar DuckDB & Apache Parquet ($0.00/mês):**
-   * Processamento vetorizado SIMD sobre os **204.382 registros** reais da Amazon.
-   * Consultas analíticas pesadas (agrupamentos, percentuais e séries históricas) resolvidas localmente em **<= 15ms** sem custo de banco gerenciado pago.
-   * Arquivo colunar otimizado `amazon_reviews.parquet` (40.79 MB) e banco DuckDB indexado com fallback transparente para SQLite.
-2. 📐 **Camada Semântica Centralizada (Metric Layer):**
-   * Codificação matemática canônica via Pydantic v2 das fórmulas de negócio: **CSAT Proxy**, **Taxa de Promotores**, **Taxa de Detratores**, **Net Customer Sentiment Score (NPS Proxy)** e **Série Temporal Anual**.
-   * Blindagem absoluta contra alucinações de fórmulas e cálculos divergentes.
-3. 🛡️ **Segurança Determinística (AST Guardrails via `sqlglot`):**
-   * Nenhuma query gerada por LLM alcança o banco sem passar por validação sintática estrita da árvore de comandos (AST).
-   * Rejeição instantânea de mutações (`DROP`, `DELETE`, `UPDATE`, `INSERT`, `ALTER`), injeção forçada de `LIMIT 100` e conexão estritamente `read-only`.
-4. 🎛️ **Tri-Tiering Agnóstico de Modelos de Linguagem (FinOps Driven):**
-   * **Tier Primário (Fast):** Google Gemini 3.8 Flash (altíssima velocidade, contexto amplo e latência sub-segundo).
-   * **Tier Código / NL2SQL:** OpenCode Go (`DeepSeek V4.1 Flash` com cota de 26.000 req/5h e `Qwen 3.8 Max`).
-   * **Tier Juiz Imparcial (Evals Ragas):** OpenRouter Free (`NVIDIA Nemotron 3 Ultra 550B` / `Gemma 4 31B`).
-5. 🌊 **Streaming em Tempo Real (Server-Sent Events - SSE):**
-   * Transmissão progressiva de tokens e emissão de eventos de ciclo de vida do agente (`router`, `nl2sql`, `guard`, `executor`, `healing`, `end`) com Time-to-First-Token <= 500ms.
-6. 🔍 **UX de Auditoria Sob Demanda (Metadata Modal - Padrão Hex / Snowflake Cortex):**
-   * Eliminação de ruído visual: a resposta executiva principal é 100% limpa e legível para gestores.
-   * Auditabilidade total: botão *"Inspecionar Consulta"* na barra de ações abre um modal elegante exibindo o comando SQL gerado, metadados do motor DuckDB, conformidade da AST e cópia com 1 clique.
-7. 🎨 **Frontend Corporativo Desacoplado 100% Tema Claro:**
-   * Construído com **React 19**, **TypeScript estrito**, **Vite**, **Tailwind CSS**, **Shadcn UI** e **Recharts**.
-   * Padrão visual inspirado em plataformas modernas (Stripe, Linear e Retool), sem clichês de IA (sem avatares de robôs ou temas escuros pesados).
-8. 📈 **Observabilidade & Telemetria Pronta para Produção:**
-   * Endpoint oficial `@api.get("/metrics")` no formato **Prometheus / OpenMetrics** para Prometheus, Grafana e Datadog.
-   * Documentação viva via **Scalar** em `/docs` (substituição normativa do Swagger UI tradicional).
-9. 🧪 **Avaliação Contínua com Ragas (LLM-as-a-Judge):**
-   * 35 testes automatizados (`pytest`), linter `ruff` (zero warnings) e evals contínuos (*Faithfulness* >= 0.85, *Answer Relevancy* >= 0.80).
+1. **Motor Analítico Colunar DuckDB & Apache Parquet ($0.00/mês):**
+ * Processamento vetorizado SIMD sobre os **204.382 registros** reais da Amazon.
+ * Consultas analíticas pesadas (agrupamentos, percentuais e séries históricas) resolvidas localmente em **<= 15ms** sem custo de banco gerenciado pago.
+ * Arquivo colunar otimizado `amazon_reviews.parquet` (40.79 MB) e banco DuckDB indexado com fallback transparente para SQLite.
+2. **Camada Semântica Centralizada (Metric Layer):**
+ * Codificação matemática canônica via Pydantic v2 das fórmulas de negócio: **CSAT Proxy**, **Taxa de Promotores**, **Taxa de Detratores**, **Net Customer Sentiment Score (NPS Proxy)** e **Série Temporal Anual**.
+ * Blindagem absoluta contra alucinações de fórmulas e cálculos divergentes.
+3.  **Segurança Determinística (AST Guardrails via `sqlglot`):**
+ * Nenhuma query gerada por LLM alcança o banco sem passar por validação sintática estrita da árvore de comandos (AST).
+ * Rejeição instantânea de mutações (`DROP`, `DELETE`, `UPDATE`, `INSERT`, `ALTER`), injeção forçada de `LIMIT 100` e conexão estritamente `read-only`.
+4.  **Tri-Tiering Agnóstico de Modelos de Linguagem (FinOps Driven):**
+ * **Tier Primário (Fast):** Google Gemini 3.8 Flash (altíssima velocidade, contexto amplo e latência sub-segundo).
+ * **Tier Código / NL2SQL:** OpenCode Go (`DeepSeek V4.1 Flash` com cota de 26.000 req/5h e `Qwen 3.8 Max`).
+ * **Tier Juiz Imparcial (Evals Ragas):** OpenRouter Free (`NVIDIA Nemotron 3 Ultra 550B` / `Gemma 4 31B`).
+5. **Streaming em Tempo Real (Server-Sent Events - SSE):**
+ * Transmissão progressiva de tokens e emissão de eventos de ciclo de vida do agente (`router`, `nl2sql`, `guard`, `executor`, `healing`, `end`) com Time-to-First-Token <= 500ms.
+6. **UX de Auditoria Sob Demanda (Metadata Modal - Padrão Hex / Snowflake Cortex):**
+ * Eliminação de ruído visual: a resposta executiva principal é 100% limpa e legível para gestores.
+ * Auditabilidade total: botão *"Inspecionar Consulta"* na barra de ações abre um modal elegante exibindo o comando SQL gerado, metadados do motor DuckDB, conformidade da AST e cópia com 1 clique.
+7. **Frontend Corporativo Desacoplado 100% Tema Claro:**
+ * Construído com **React 19**, **TypeScript estrito**, **Vite**, **Tailwind CSS**, **Shadcn UI** e **Recharts**.
+ * Padrão visual inspirado em plataformas modernas (Stripe, Linear e Retool), sem clichês de IA (sem avatares de robôs ou temas escuros pesados).
+8. **Observabilidade & Telemetria Pronta para Produção:**
+ * Endpoint oficial `@api.get("/metrics")` no formato **Prometheus / OpenMetrics** para Prometheus, Grafana e Datadog.
+ * Documentação viva via **Scalar** em `/docs` (substituição normativa do Swagger UI tradicional).
+9. **Avaliação Contínua com Ragas (LLM-as-a-Judge):**
+ * 35 testes automatizados (`pytest`), linter `ruff` (zero warnings) e evals contínuos (*Faithfulness* >= 0.85, *Answer Relevancy* >= 0.80).
 
 ---
 
-## 📊 Métricas de Negócio & Base de Dados Real
+## Métricas de Negócio & Base de Dados Real
 
 O sistema opera sobre a base real saneada de avaliações verificadas de compras da Amazon:
 
 * **Volume Total de Avaliações:** `204.382`
 * **Nota Média Global:** `4.11 / 5.0` (Alta satisfação de catálogo)
 * **Avaliações 5 Estrelas:** `123.210` (60,3% do catálogo)
-* **Promotores (4★ e 5★):** `152.850` (74,8% da base)
-* **Neutros (3★):** `20.218` (9,9% da base)
-* **Detratores (1★ e 2★):** `31.314` (15,3% da base)
+* **Promotores (4 e 5 estrelas):** `152.850` (74,8% da base)
+* **Neutros (3 estrelas):** `20.218` (9,9% da base)
+* **Detratores (1 e 2 estrelas):** `31.314` (15,3% da base)
 * **Net Customer Sentiment Score (NPS Proxy):** `+59.5` (Zona de Excelência)
 * **Série Histórica Consolidada:** `2016 a 2023` (com pico em 2020: +48.9k avaliações)
 
 ---
 
-## 🏗️ Topologia da Arquitetura
+## Topologia da Arquitetura
 
 ```mermaid
 flowchart TD
-    subgraph Frontend["🖥️ Frontend SPA (React 19 + TypeScript + Shadcn UI + Recharts)"]
-        Dash["Painel Executivo (4 Gráficos + Tabela SKUs)"]
-        Console["Console Analítico NL2SQL (Streaming SSE)"]
-        Modal["Modal de Linhagem & Inspeção SQL"]
-        FinOpsTab["Painel de Auditoria FinOps"]
-    end
+ subgraph Frontend["Frontend SPA (React 19 + TypeScript + Shadcn UI + Recharts)"]
+ Dash["Painel Executivo (4 Gráficos + Tabela SKUs)"]
+ Console["Console Analítico NL2SQL (Streaming SSE)"]
+ Modal["Modal de Linhagem & Inspeção SQL"]
+ FinOpsTab["Painel de Auditoria FinOps"]
+ end
 
-    subgraph Gateway["🚪 Backend Gateway (FastAPI 0.111+)"]
-        API["FastAPI REST & SSE Router"]
-        Scalar["Scalar API Docs (/docs)"]
-        Prometheus["Prometheus Telemetry (/metrics)"]
-    end
+ subgraph Gateway["Backend Gateway (FastAPI 0.111+)"]
+ API["FastAPI REST & SSE Router"]
+ Scalar["Scalar API Docs (/docs)"]
+ Prometheus["Prometheus Telemetry (/metrics)"]
+ end
 
-    subgraph DataEngine["⚡ Motor de Dados & Camada Semântica ($0.00/mês)"]
-        DuckDB[("DuckDB OLAP SIMD (amazon_reviews.duckdb)")]
-        Parquet[("Apache Parquet Colunar (40.79 MB)")]
-        MetricLayer["Metric Layer (Fórmulas Canônicas)"]
-        SQLiteFB[("SQLite 3 Fallback (mode=ro)")]
-    end
+ subgraph DataEngine["Motor de Dados & Camada Semântica ($0.00/mês)"]
+ DuckDB[("DuckDB OLAP SIMD (amazon_reviews.duckdb)")]
+ Parquet[("Apache Parquet Colunar (40.79 MB)")]
+ MetricLayer["Metric Layer (Fórmulas Canônicas)"]
+ SQLiteFB[("SQLite 3 Fallback (mode=ro)")]
+ end
 
-    subgraph MultiAgent["🧠 Orquestrador Multi-Agente (LangGraph + Pydantic v2)"]
-        FastPath{"Regex Fast-Path? (0.00s)"}
-        Router["IntentRouter (Gemini / DeepSeek)"]
-        NL2SQL["NL2SQL Generator (DeepSeek V4.1 Flash)"]
-        Guard["AST Guardrail (sqlglot DuckDB)"]
-        SelfHealing{"Query Válida?"}
-        Synthesizer["SynthesizerAgent (Executive Insights & NBA)"]
-    end
+ subgraph MultiAgent["Orquestrador Multi-Agente (LangGraph + Pydantic v2)"]
+ FastPath{"Regex Fast-Path? (0.00s)"}
+ Router["IntentRouter (Gemini / DeepSeek)"]
+ NL2SQL["NL2SQL Generator (DeepSeek V4.1 Flash)"]
+ Guard["AST Guardrail (sqlglot DuckDB)"]
+ SelfHealing{"Query Válida?"}
+ Synthesizer["SynthesizerAgent (Executive Insights & NBA)"]
+ end
 
-    Frontend -->|"SSE / REST"| API
-    API --> Scalar
-    API --> Prometheus
-    API --> MultiAgent
+ Frontend -->|"SSE / REST"| API
+ API --> Scalar
+ API --> Prometheus
+ API --> MultiAgent
 
-    MultiAgent --> MetricLayer
-    FastPath -->|"Sim"| NL2SQL
-    FastPath -->|"Não"| Router
-    Router --> NL2SQL
-    NL2SQL --> Guard
-    Guard --> SelfHealing
-    SelfHealing -->|"Erro (Max 3)"| NL2SQL
-    SelfHealing -->|"Aprovada"| DuckDB
-    DuckDB -.->|"Fallback"| SQLiteFB
-    DuckDB --> Synthesizer
-    Synthesizer -->|"EventStream SSE"| Frontend
-    Modal -.->|"Auditoria"| Guard
+ MultiAgent --> MetricLayer
+ FastPath -->|"Sim"| NL2SQL
+ FastPath -->|"Não"| Router
+ Router --> NL2SQL
+ NL2SQL --> Guard
+ Guard --> SelfHealing
+ SelfHealing -->|"Erro (Max 3)"| NL2SQL
+ SelfHealing -->|"Aprovada"| DuckDB
+ DuckDB -.->|"Fallback"| SQLiteFB
+ DuckDB --> Synthesizer
+ Synthesizer -->|"EventStream SSE"| Frontend
+ Modal -.->|"Auditoria"| Guard
 ```
 
 ---
 
-## 📁 Governança e Base Documental Viva
+## Governança e Base Documental Viva
 
-* 📄 [**PRD.md**](PRD.md) — Visão de produto, personas executivas (Marina CX, Rafael PM, Carla CTO), dores mapeadas e SLAs.
-* 📐 [**PROJECT_SPEC.md**](PROJECT_SPEC.md) — Topologia técnica detalhada, diagramas C4 e decisões de engenharia (ADRs 001 a 010).
-* 🤖 [**AGENTS.md**](AGENTS.md) — Contratos Pydantic v2, catálogo de nós do LangGraph, reducers de estado, system prompts isolados e guardrails.
-* 📋 [**TASKS.md**](TASKS.md) — Backlog granular de implementação com todas as fases e sub-tarefas concluídas.
-* 🔍 [**walkthrough.md**](walkthrough.md) — Relatório executivo da auditoria técnica sênior e evidências de validação.
+* [**PRD.md**](PRD.md) — Visão de produto, personas executivas (Marina CX, Rafael PM, Carla CTO), dores mapeadas e SLAs.
+* [**PROJECT_SPEC.md**](PROJECT_SPEC.md) — Topologia técnica detalhada, diagramas C4 e decisões de engenharia (ADRs 001 a 010).
+* [**AGENTS.md**](AGENTS.md) — Contratos Pydantic v2, catálogo de nós do LangGraph, reducers de estado, system prompts isolados e guardrails.
+* [**TASKS.md**](TASKS.md) — Backlog granular de implementação com todas as fases e sub-tarefas concluídas.
+* [**walkthrough.md**](walkthrough.md) — Relatório executivo da auditoria técnica sênior e evidências de validação.
 
 ---
 
-## 🚀 Como Executar Localmente
+## Como Executar Localmente
 
 ### 1. Pré-requisitos
 * **Python 3.11+**
@@ -229,8 +229,8 @@ npm run build
 
 | Serviço | URL | Finalidade |
 | :--- | :--- | :--- |
-| **🚀 Produção Online (Google Cloud Run)** | [https://retailsense-ai-197215016090.us-central1.run.app](https://retailsense-ai-197215016090.us-central1.run.app) | **Aplicação Fullstack em Produção (Scale-to-Zero $0.00/mês)** |
-| **📚 Scalar Docs Online** | [https://retailsense-ai-197215016090.us-central1.run.app/docs](https://retailsense-ai-197215016090.us-central1.run.app/docs) | Documentação interativa OpenAPI em produção |
+| ** Produção Online (Google Cloud Run)** | [https://retailsense-ai-197215016090.us-central1.run.app](https://retailsense-ai-197215016090.us-central1.run.app) | **Aplicação Fullstack em Produção (Scale-to-Zero $0.00/mês)** |
+| ** Scalar Docs Online** | [https://retailsense-ai-197215016090.us-central1.run.app/docs](https://retailsense-ai-197215016090.us-central1.run.app/docs) | Documentação interativa OpenAPI em produção |
 | **Aplicação Local (Frontend SPA)** | [http://localhost:5173](http://localhost:5173) | Painel Executivo, Console NL2SQL com streaming e FinOps |
 | **Backend API Local** | [http://localhost:8000](http://localhost:8000) | Endpoints locais de saúde, orquestração e dados |
 | **Scalar API Docs Local** | [http://localhost:8000/docs](http://localhost:8000/docs) | Documentação viva interativa local |
@@ -238,7 +238,7 @@ npm run build
 
 ---
 
-## 🧪 Comandos Oficiais de Qualidade e Testes
+## Comandos Oficiais de Qualidade e Testes
 
 ```bash
 # 1. Executar suíte completa de testes automatizados (35 testes)
@@ -257,7 +257,7 @@ pytest tests/evals/test_ragas.py -v
 
 ---
 
-## 🛡️ SLAs Técnicos e Governança FinOps
+##  SLAs Técnicos e Governança FinOps
 
 | Métrica | SLA / Meta | Status Atual / Evidência |
 | :--- | :--- | :--- |
