@@ -36,9 +36,26 @@ def inicializar_dados_duckdb(force: bool = False) -> None:
         logger.info("Motor DuckDB e arquivo Parquet já existem e estão prontos.")
         return
 
+    # Se o arquivo colunar Parquet já existe (commitado no repositório), popula diretamente a partir dele
+    if PARQUET_PATH.exists():
+        logger.info(
+            "Materializando tabela 'avaliacoes' no DuckDB a partir do Parquet colunar (%s)...",
+            PARQUET_PATH,
+        )
+        conn = duckdb.connect(str(DUCKDB_PATH))
+        conn.execute("DROP TABLE IF EXISTS avaliacoes")
+        conn.execute(
+            f"CREATE TABLE avaliacoes AS SELECT * FROM read_parquet('{PARQUET_PATH.as_posix()}')"
+        )
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_duck_asin ON avaliacoes(parent_asin)")
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_duck_rating ON avaliacoes(rating)")
+        conn.close()
+        logger.info("Base DuckDB materializada com sucesso a partir do Parquet!")
+        return
+
     if not SQLITE_DB_PATH.exists():
         logger.warning(
-            "Banco SQLite de origem não encontrado em %s. Criando base vazia no DuckDB.",
+            "Banco SQLite de origem e arquivo Parquet não encontrados em %s. Criando base vazia no DuckDB.",
             SQLITE_DB_PATH,
         )
         conn = duckdb.connect(str(DUCKDB_PATH))
