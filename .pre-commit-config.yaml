@@ -1,0 +1,42 @@
+# See https://pre-commit.com for more information
+repos:
+  # 1. Utilidades gerais de sintaxe e limpeza
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-added-large-files
+        args: ['--maxkb=2000']
+      - id: check-merge-conflict
+      - id: check-case-conflict
+
+  # 2. Segurança: Bloqueio de credenciais e segredos vazados
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.18.4
+    hooks:
+      - id: gitleaks
+
+  # 3. Backend: Ruff (Linter & Formatter Python ultrarrápido)
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.5.5
+    hooks:
+      # Linter com auto-fix
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+      # Formatter
+      - id: ruff-format
+
+  # 4. Backend: Mypy (Tipagem estática estrita)
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.11.0
+    hooks:
+      - id: mypy
+        additional_dependencies: [
+          "pydantic>=2.7.0",
+          "pydantic-settings>=2.2.0",
+          "types-requests"
+        ]
+        args: [--ignore-missing-imports, --check-untyped-defs]

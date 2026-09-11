@@ -1,5 +1,5 @@
-from langchain_community.utilities import SQLDatabase
 from langchain_community.agent_toolkits import SQLDatabaseToolkit
+from langchain_community.utilities import SQLDatabase
 from langchain_groq import ChatGroq
 from langgraph.prebuilt import create_react_agent
 
@@ -15,7 +15,7 @@ def configurar_agente_sql():
     # Inicializar o LLM via Groq (Llama 3.3)
     llm = ChatGroq(
         model="llama-3.3-70b-versatile",
-        temperature=0  # Mantemos a temperatura a 0 para precisão absoluta nas queries SQL
+        temperature=0,  # Mantemos a temperatura a 0 para precisão absoluta nas queries SQL
     )
 
     # Criar as ferramentas SQL que o Agente poderá usar

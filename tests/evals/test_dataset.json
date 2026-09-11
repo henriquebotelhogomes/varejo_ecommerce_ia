@@ -1,0 +1,47 @@
+[
+  {
+    "id": "eval_001",
+    "question": "Qual é a média geral das notas atribuídas pelos clientes?",
+    "expected_intent": "QUANTITATIVE_SQL",
+    "canonical_sql": "SELECT AVG(rating) as media_geral FROM avaliacoes",
+    "expected_sql_keywords": ["AVG", "rating", "avaliacoes"],
+    "ground_truth": "A consulta deve agregar a coluna rating usando a função AVG sobre a tabela avaliacoes.",
+    "context": "A tabela 'avaliacoes' contém mais de 283 mil registros com o campo rating variando de 1.0 a 5.0."
+  },
+  {
+    "id": "eval_002",
+    "question": "Quantas avaliações receberam exatamente 5 estrelas?",
+    "expected_intent": "QUANTITATIVE_SQL",
+    "canonical_sql": "SELECT COUNT(*) as total_5_estrelas FROM avaliacoes WHERE rating = 5",
+    "expected_sql_keywords": ["COUNT", "rating = 5", "avaliacoes"],
+    "ground_truth": "Deve contar o total de linhas onde a nota seja igual a 5.",
+    "context": "Filtro exato pela coluna rating com valor numérico 5."
+  },
+  {
+    "id": "eval_003",
+    "question": "Liste os 5 produtos com maior quantidade de avaliações.",
+    "expected_intent": "QUANTITATIVE_SQL",
+    "canonical_sql": "SELECT parent_asin, COUNT(*) as qtd FROM avaliacoes GROUP BY parent_asin ORDER BY qtd DESC LIMIT 5",
+    "expected_sql_keywords": ["GROUP BY", "ORDER BY", "DESC", "LIMIT 5"],
+    "ground_truth": "Agrupamento por identificador de produto (parent_asin) com ordenação decrescente e corte no top 5.",
+    "context": "Uso de parent_asin para agrupar o volume de avaliações por produto."
+  },
+  {
+    "id": "eval_004",
+    "question": "Mostre 3 avaliações com nota 1 e votos úteis.",
+    "expected_intent": "QUANTITATIVE_SQL",
+    "canonical_sql": "SELECT title, text, helpful_vote FROM avaliacoes WHERE rating = 1 ORDER BY helpful_vote DESC LIMIT 3",
+    "expected_sql_keywords": ["rating = 1", "ORDER BY helpful_vote DESC", "LIMIT 3"],
+    "ground_truth": "Seleção das piores notas ordenadas pela relevância de helpful_vote com limite 3.",
+    "context": "Análise de fricção com foco nas reclamações mais validadas por outros clientes."
+  },
+  {
+    "id": "eval_005",
+    "question": "Olá! Quem é você e como posso utilizá-lo?",
+    "expected_intent": "CASUAL_CHAT",
+    "canonical_sql": null,
+    "expected_sql_keywords": [],
+    "ground_truth": "Apresentação cordial do copiloto RetailSense AI sem execução de queries no banco.",
+    "context": "Saudação e explicação do escopo analítico."
+  }
+]

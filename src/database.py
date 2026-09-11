@@ -1,6 +1,6 @@
 import os
 import sqlite3
-import pandas as pd
+
 from datasets import load_dataset
 
 DB_NAME = "amazon_reviews.db"
@@ -14,11 +14,15 @@ def preparar_banco_amazon():
     """
     # Verifica se o banco já existe localmente
     if os.path.exists(DB_NAME):
-        return True, f"Banco de dados '{DB_NAME}' carregado com sucesso a partir do armazenamento local."
+        return (
+            True,
+            f"Banco de dados '{DB_NAME}' carregado com sucesso a partir do armazenamento local.",
+        )
 
     try:
         print(
-            "⏳ A descarregar o dataset COMPLETO da Amazon (isto pode demorar uns segundos/minutos dependendo da internet)...")
+            "⏳ A descarregar o dataset COMPLETO da Amazon (isto pode demorar uns segundos/minutos dependendo da internet)..."
+        )
         # Descarrega o dataset inteiro
         dataset = load_dataset("minhth2nh/amazon_product_review_283K", split="train")
 

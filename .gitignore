@@ -1,0 +1,41 @@
+﻿# Ambientes e Segredos
+.env
+.env.*
+!.env.example
+
+# Bancos de dados e grandes arquivos de dados
+amazon_reviews.db
+*.db
+*.sqlite
+*.sqlite3
+data/*.duckdb
+*.duckdb
+
+# Caches de Python
+__pycache__/
+*.py[cod]
+*.class
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+.mypy_cache/
+
+# Ambientes virtuais
+.venv/
+venv/
+ENV/
+env/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+*.log
+
+# IDEs e Ferramentas Locais
+.idea/
+.vscode/
+.agentbridge/
+.DS_Store
+Thumbs.db

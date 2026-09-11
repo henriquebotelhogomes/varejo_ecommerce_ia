@@ -1,0 +1,1 @@
+"""Módulo Core do Sistema."""
