@@ -2,6 +2,10 @@
 
 <div align="center">
 
+[![CI/CD Pipeline](https://github.com/henriquebotelhogomes/varejo_ecommerce_ia/actions/workflows/ci.yml/badge.svg)](https://github.com/henriquebotelhogomes/varejo_ecommerce_ia/actions/workflows/ci.yml)
+[![CodeQL Security](https://github.com/henriquebotelhogomes/varejo_ecommerce_ia/actions/workflows/codeql.yml/badge.svg)](https://github.com/henriquebotelhogomes/varejo_ecommerce_ia/actions/workflows/codeql.yml)
+[![GitHub Release](https://img.shields.io/github/v/release/henriquebotelhogomes/varejo_ecommerce_ia?logo=github&color=238636)](https://github.com/henriquebotelhogomes/varejo_ecommerce_ia/releases)
+[![GHCR Container](https://img.shields.io/badge/GHCR-Docker%20Package-blue?logo=docker&logoColor=white)](https://github.com/henriquebotelhogomes/varejo_ecommerce_ia/pkgs/container/varejo_ecommerce_ia)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.111+-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![React 19](https://img.shields.io/badge/React-19.0-61DAFB.svg?logo=react&logoColor=black)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.5+-3178C6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org)

@@ -1,0 +1,40 @@
+﻿name: Relatório de Bug
+description: Crie um relatório detalhado para ajudar a corrigir uma falha no RetailSense AI.
+title: "[BUG]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por relatar o problema! Forneça o máximo de detalhes possível.
+  - type: textarea
+    id: description
+    attributes:
+      label: Descrição do Problema
+      description: Explique de forma clara o que deu errado.
+      placeholder: Ao executar a query analítica X...
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Passos para Reprodução
+      description: Como reproduzir o comportamento reportado.
+      value: |
+        1. Acesse o console analítico em '...'
+        2. Digite a pergunta '...'
+        3. Observe o erro...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportamento Esperado
+      description: O que deveria ter acontecido.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs ou Mensagem de Erro
+      render: shell

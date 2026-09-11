@@ -1,0 +1,28 @@
+﻿name: Sugestão de Funcionalidade
+description: Proponha uma nova métrica, funcionalidade ou melhoria de UX.
+title: "[FEAT]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por contribuir com a evolução do RetailSense AI!
+  - type: textarea
+    id: problem
+    attributes:
+      label: Contexto ou Dor de Negócio
+      description: Qual problema essa nova feature resolve?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposta de Solução
+      description: Como você imagina essa funcionalidade implementada?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas Consideradas
+      description: Quais outras abordagens ou ferramentas você avaliou?
