@@ -1,4 +1,4 @@
-# =====================================================================
+﻿# =====================================================================
 # Script PowerShell de Deploy Automatizado para o Google Cloud Run
 # Garante política mandatória de Scale-to-Zero ($0/mês em ociosidade).
 # =====================================================================
@@ -8,21 +8,21 @@ $ErrorActionPreference = "Stop"
 $ProjectId = if ($env:GCP_PROJECT_ID) { $env:GCP_PROJECT_ID } else { (gcloud config get-value project) }
 $Region = if ($env:GCP_REGION) { $env:GCP_REGION } else { "us-central1" }
 $ServiceName = "retailsense-ai"
-$ImageTag = "gcr.io/$ProjectId/$ServiceName`:latest"
+$ImageTag = "gcr.io/$ProjectId/${ServiceName}:latest"
 
 Write-Host "==========================================================" -ForegroundColor Cyan
-Write-Host "🚀 Iniciando Deploy do RetailSense AI no Google Cloud Run" -ForegroundColor Green
+Write-Host "Iniciando Deploy do RetailSense AI no Google Cloud Run" -ForegroundColor Green
 Write-Host "Projeto GCP: $ProjectId"
 Write-Host "Região:      $Region"
 Write-Host "Serviço:     $ServiceName"
 Write-Host "==========================================================" -ForegroundColor Cyan
 
-# 1. Build da imagem conteinerizada
-Write-Host "📦 Enviando build para o Google Cloud Build..." -ForegroundColor Yellow
+# 1. Build da imagem conteinerizada via Cloud Build
+Write-Host "Enviando build para o Google Cloud Build..." -ForegroundColor Yellow
 gcloud builds submit --tag $ImageTag .
 
 # 2. Deploy no Cloud Run com Scale-to-Zero (min-instances = 0)
-Write-Host "☁️ Implantando serviço com min-instances=0 (Scale-to-Zero)..." -ForegroundColor Yellow
+Write-Host "Implantando servico com min-instances=0 (Scale-to-Zero)..." -ForegroundColor Yellow
 gcloud run deploy $ServiceName `
     --image $ImageTag `
     --platform managed `

@@ -78,7 +78,7 @@ export const Header: React.FC = () => {
             Auditoria de Custos
           </button>
           <a
-            href="http://localhost:8000/docs"
+            href="/docs"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-blue-600 hover:bg-slate-200/50 transition-all border-l border-slate-200 ml-1 cursor-pointer"
