@@ -37,10 +37,9 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 COPY pyproject.toml uv.lock ./
 RUN uv pip install --system --no-cache .
 
-# Copia a aplicação do Backend e os dados analíticos (DuckDB / Parquet / SQLite)
+# Copia a aplicação do Backend e os dados analíticos (DuckDB / Apache Parquet)
 COPY src/ ./src/
 COPY data/ ./data/
-COPY amazon_reviews.db ./amazon_reviews.db
 
 # Copia os arquivos estáticos compilados do Frontend para servir na raiz do FastAPI
 COPY --from=frontend-builder /app/frontend/dist ./src/api/static
