@@ -124,17 +124,14 @@ flowchart TD
     end
 
     subgraph DataEngine["⚡ Motor de Dados & Camada Semântica ($0.00/mês)"]
-        DuckDB[("DuckDB OLAP SIMD
-(amazon_reviews.duckdb)")]
-        Parquet[("Apache Parquet Colunar
-(40.79 MB)")]
+        DuckDB[("DuckDB OLAP SIMD (amazon_reviews.duckdb)")]
+        Parquet[("Apache Parquet Colunar (40.79 MB)")]
         MetricLayer["Metric Layer (Fórmulas Canônicas)"]
         SQLiteFB[("SQLite 3 Fallback (mode=ro)")]
     end
 
     subgraph MultiAgent["🧠 Orquestrador Multi-Agente (LangGraph + Pydantic v2)"]
-        FastPath{"Regex Fast-Path?
-(0.00s)"}
+        FastPath{"Regex Fast-Path? (0.00s)"}
         Router["IntentRouter (Gemini / DeepSeek)"]
         NL2SQL["NL2SQL Generator (DeepSeek V4.1 Flash)"]
         Guard["AST Guardrail (sqlglot DuckDB)"]
@@ -142,22 +139,23 @@ flowchart TD
         Synthesizer["SynthesizerAgent (Executive Insights & NBA)"]
     end
 
-    Frontend -->|SSE / REST| API
+    Frontend -->|"SSE / REST"| API
     API --> Scalar
     API --> Prometheus
     API --> MultiAgent
 
     MultiAgent --> MetricLayer
-    FastPath -->|Sim| NL2SQL
-    FastPath -->|Não| Router --> NL2SQL
+    FastPath -->|"Sim"| NL2SQL
+    FastPath -->|"Não"| Router
+    Router --> NL2SQL
     NL2SQL --> Guard
     Guard --> SelfHealing
-    SelfHealing -->|Erro (Max 3)| NL2SQL
-    SelfHealing -->|Aprovada| DuckDB
-    DuckDB -.->|Fallback| SQLiteFB
+    SelfHealing -->|"Erro (Max 3)"| NL2SQL
+    SelfHealing -->|"Aprovada"| DuckDB
+    DuckDB -.->|"Fallback"| SQLiteFB
     DuckDB --> Synthesizer
-    Synthesizer -->|EventStream SSE| Frontend
-    Modal -.->|Auditoria| Guard
+    Synthesizer -->|"EventStream SSE"| Frontend
+    Modal -.->|"Auditoria"| Guard
 ```
 
 ---
