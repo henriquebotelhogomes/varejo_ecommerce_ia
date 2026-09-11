@@ -182,26 +182,37 @@ flowchart TD
 
 ```bash
 # Clone o repositório
-git clone https://github.com/SEU_USUARIO/varejo_ecommerce_ia.git
+git clone https://github.com/henriquebotelhogomes/varejo_ecommerce_ia.git
 cd varejo_ecommerce_ia
 
-# Crie e ative o ambiente virtual
-uv venv
+# Crie o ambiente virtual e sincronize dependências instantaneamente com uv
+uv sync --extra dev
+
+# Ative o ambiente virtual
 # Windows: .venv\Scripts\activate
 # Linux/macOS: source .venv/bin/activate
-
-# Instale as dependências com pacotes de desenvolvimento
-uv pip install -e ".[dev]"
 
 # Configure as variáveis de ambiente no arquivo .env (copie do .env.example)
 # GEMINI_API_KEY=sua_chave_aqui
 # OPENCODE_API_KEY=sua_chave_aqui
 
-# Inicie a API FastAPI
-python -m uvicorn src.api.app:app --reload --port 8000
+# Inicie a API FastAPI com recarregamento dinâmico
+uv run uvicorn src.api.app:app --reload --port 8000
 ```
 
-### 3. Execução do Frontend
+### 3. Execução Conteinerizada com Docker
+
+Para rodar toda a aplicação Fullstack (Backend FastAPI + Frontend React + DuckDB) em um único contêiner otimizado com `uv`:
+
+```bash
+# Construir a imagem Docker
+docker build -t retailsense-ai:v2 .
+
+# Executar o contêiner mapeando a porta 8080
+docker run -d -p 8080:8080 --env-file .env --name retailsense retailsense-ai:v2
+```
+
+### 4. Execução do Frontend em Modo Desenvolvimento
 
 ```bash
 cd frontend

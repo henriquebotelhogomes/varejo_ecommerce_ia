@@ -30,10 +30,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Instala dependências Python do projeto
-COPY pyproject.toml ./
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir .
+# Copia o binário oficial do uv para instalação ultrarrápida
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
+
+# Instala dependências Python compiladas via uv
+COPY pyproject.toml uv.lock ./
+RUN uv pip install --system --no-cache .
 
 # Copia a aplicação do Backend e os dados analíticos (DuckDB / Parquet / SQLite)
 COPY src/ ./src/
