@@ -15,7 +15,7 @@ if (Test-Path ".env") {
             $varVal = $parts[1].Trim()
             if (-not [System.Environment]::GetEnvironmentVariable($varName)) {
                 [System.Environment]::SetEnvironmentVariable($varName, $varVal)
-                $env:$varName = $varVal
+                Set-Item "env:$varName" $varVal
             }
         }
     }

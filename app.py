@@ -17,10 +17,10 @@ def main():
     # Porta padrão 8080 para evitar conflito com serviços Docker/WSL na porta 8000
     port = int(os.getenv("PORT", 8080))
     print("=" * 65)
-    print("🚀 Iniciando RetailSense — Analytics & Customer Experience")
-    print(f"👉 Interface Web & API: http://127.0.0.1:{port} (ou http://localhost:{port})")
-    print(f"👉 Documentação Scalar: http://127.0.0.1:{port}/docs")
-    print(f"👉 Métricas Prometheus: http://127.0.0.1:{port}/metrics")
+    print("Iniciando RetailSense - Analytics & Customer Experience")
+    print(f"Interface Web & API: http://127.0.0.1:{port} (ou http://localhost:{port})")
+    print(f"Documentacao Scalar: http://127.0.0.1:{port}/docs")
+    print(f"Metricas Prometheus: http://127.0.0.1:{port}/metrics")
     print("=" * 65)
 
     uvicorn.run(
