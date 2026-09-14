@@ -270,7 +270,7 @@ pytest tests/evals/test_ragas.py -v
 | **Latência Agregações Analíticas** | <= 20ms | **<= 15ms** (DuckDB OLAP Vetorizado SIMD) |
 | **Latência Roteamento Analítico** | <= 10ms | **0.00s** (Regex Fast-Path verificado) |
 | **Segurança SQL (Anti-Injeção)** | 100% | **AST Guardrail `sqlglot` (13 testes unitários)** |
-| **Custo Médio por Consulta** | <= $0.003 | **$0.0003** (Economia >90% frente ao GPT-4o) |
+| **Custo Médio por Consulta** | <= $0.003 | **$0.0003** (Economia >90% frente ao baseline GPT 5.6 Luna) |
 | **Custo de Infraestrutura de Banco** | $0.00/mês | **DuckDB + Parquet embutido local** |
 
 ---

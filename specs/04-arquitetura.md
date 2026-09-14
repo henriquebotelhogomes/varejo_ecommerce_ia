@@ -97,7 +97,7 @@ O cérebro. Implementa o grafo de estados da pipeline (geração → guard → H
 Abstrai fontes heterogéneas (dataset de exemplo, upload CSV/Parquet, conectores SQL). Faz **introspecção de schema** (cache), aplica **execução read-only com timeout e LIMIT**, e isola conexões por tenant.
 
 ### 5.5 FinOps & Billing
-Contabiliza tokens/custo por chamada, agrega por utilizador/equipa/tenant, aplica **limites e alertas de orçamento** e alimenta os planos de cobrança. Compara custo real vs. baseline (ex.: GPT-4o) — feature de transparência herdada do MVP atual.
+Contabiliza tokens/custo por chamada, agrega por utilizador/equipa/tenant, aplica **limites e alertas de orçamento** e alimenta os planos de cobrança. Compara custo real vs. baseline (ex.: GPT 5.6 Luna) — feature de transparência herdada do MVP atual.
 
 ### 5.6 Async Workers
 Processam tarefas pesadas fora do request-path: ingestão de grandes datasets, reindexação semântica de reviews, jobs de evals agendados.

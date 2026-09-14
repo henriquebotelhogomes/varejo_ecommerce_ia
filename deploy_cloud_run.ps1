@@ -1,9 +1,25 @@
-﻿# =====================================================================
+# =====================================================================
 # Script PowerShell de Deploy Automatizado para o Google Cloud Run
 # Garante política mandatória de Scale-to-Zero ($0/mês em ociosidade).
 # =====================================================================
 
 $ErrorActionPreference = "Stop"
+
+# Carrega chaves do .env caso não estejam nas variáveis de ambiente da sessão
+if (Test-Path ".env") {
+    Get-Content ".env" | ForEach-Object {
+        $line = $_.Trim()
+        if ($line -and -not $line.StartsWith("#") -and $line.Contains("=")) {
+            $parts = $line.Split("=", 2)
+            $varName = $parts[0].Trim()
+            $varVal = $parts[1].Trim()
+            if (-not [System.Environment]::GetEnvironmentVariable($varName)) {
+                [System.Environment]::SetEnvironmentVariable($varName, $varVal)
+                $env:$varName = $varVal
+            }
+        }
+    }
+}
 
 $ProjectId = if ($env:GCP_PROJECT_ID) { $env:GCP_PROJECT_ID } else { (gcloud config get-value project) }
 $Region = if ($env:GCP_REGION) { $env:GCP_REGION } else { "us-central1" }
@@ -15,6 +31,7 @@ Write-Host "Iniciando Deploy do RetailSense AI no Google Cloud Run" -ForegroundC
 Write-Host "Projeto GCP: $ProjectId"
 Write-Host "Região:      $Region"
 Write-Host "Serviço:     $ServiceName"
+Write-Host "Chave Gemini: $(if ($env:GEMINI_API_KEY) { 'Configurada' } else { 'AUSENTE' })"
 Write-Host "==========================================================" -ForegroundColor Cyan
 
 # 1. Build da imagem conteinerizada via Cloud Build

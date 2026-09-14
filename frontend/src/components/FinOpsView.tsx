@@ -9,9 +9,9 @@ export const FinOpsView: React.FC = () => {
 
   const activeQueries = Math.max(totalQueries, 1);
   const costActual = activeQueries * 0.0003;
-  const costGpt4 = activeQueries * 0.015;
-  const savings = Math.max(costGpt4 - costActual, 0);
-  const savingsPercent = ((savings / costGpt4) * 100).toFixed(1);
+  const costBaseline = activeQueries * 0.0050; // GPT 5.6 Luna baseline
+  const savings = Math.max(costBaseline - costActual, 0);
+  const savingsPercent = ((savings / costBaseline) * 100).toFixed(1);
 
   return (
     <div className="max-w-5xl mx-auto space-y-6">
@@ -48,9 +48,9 @@ export const FinOpsView: React.FC = () => {
         <Card className="border-slate-200/90 shadow-xs">
           <CardContent className="flex items-center justify-between">
             <div>
-              <p className="text-xs font-medium text-slate-500">Custo no GPT-4o Legado</p>
-              <h3 className="text-2xl font-bold text-slate-900 mt-1">${costGpt4.toFixed(4)}</h3>
-              <p className="text-[11px] text-slate-500 mt-1">Benchmark Proprietário Monolítico</p>
+              <p className="text-xs font-medium text-slate-500">Custo Baseline (GPT 5.6 Luna)</p>
+              <h3 className="text-2xl font-bold text-slate-900 mt-1">${costBaseline.toFixed(4)}</h3>
+              <p className="text-[11px] text-slate-500 mt-1">Benchmark de Fronteira OpenAI</p>
             </div>
             <div className="h-10 w-10 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center">
               <ShieldAlert className="h-5 w-5" />
@@ -119,11 +119,11 @@ export const FinOpsView: React.FC = () => {
                   <td className="p-3"><Badge variant="info">Ativo (OpenCode Go)</Badge></td>
                 </tr>
                 <tr className="hover:bg-slate-50 text-slate-400 bg-slate-50/50">
-                  <td className="p-3 font-medium">GPT-4o (Linha de Base)</td>
-                  <td className="p-3">Benchmark Comparativo</td>
-                  <td className="p-3 text-red-600 font-medium">$2.50</td>
-                  <td className="p-3 text-red-600 font-medium">$10.00</td>
-                  <td className="p-3"><Badge variant="neutral">Evitado (+90% Custo)</Badge></td>
+                  <td className="p-3 font-medium">GPT 5.6 Luna (Linha de Base)</td>
+                  <td className="p-3">Benchmark de Fronteira (OpenAI)</td>
+                  <td className="p-3 text-red-600 font-medium">$2.00</td>
+                  <td className="p-3 text-red-600 font-medium">$8.00</td>
+                  <td className="p-3"><Badge variant="neutral">Evitado (+94% Custo)</Badge></td>
                 </tr>
               </tbody>
             </table>

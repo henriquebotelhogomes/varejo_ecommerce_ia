@@ -110,6 +110,6 @@ Pergunta do utilizador
 | Logs de raciocínio em `st.session_state` | Logs estruturados em Loki + traces OTel |
 | Contagem de tokens manual | Métricas Prometheus + Langfuse automáticos |
 | "Caixa preta" exibida na aba Logs | Mesma transparência, agora persistida e auditável |
-| Custo estimado vs. GPT-4o | Dashboard FinOps por tenant com alertas |
+| Custo estimado vs. GPT 5.6 Luna | Dashboard FinOps por tenant com alertas |
 
 > A **filosofia de transparência já existe no MVP** — esta estratégia apenas a leva a um padrão de produção.

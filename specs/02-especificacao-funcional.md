@@ -41,7 +41,7 @@ RetailSense AI
 │   └── Histórico de conversas auditável
 └── 💰 FinOps
     ├── Consumo de tokens por interação
-    ├── Custo real vs. baseline (ex.: GPT-4o)
+    ├── Custo real vs. baseline (ex.: GPT 5.6 Luna)
     └── Limites e alertas de orçamento
 ```
 

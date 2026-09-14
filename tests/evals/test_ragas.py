@@ -16,7 +16,7 @@ DATASET_PATH = Path(__file__).parent / "test_dataset.json"
 
 
 def test_finops_cost_calculation():
-    """Valida o cálculo de custo de tokens e a economia frente ao GPT-4o."""
+    """Valida o cálculo de custo de tokens e a economia frente ao modelo de fronteira GPT 5.6 Luna."""
     prompt_tokens = 100_000
     completion_tokens = 20_000
 
@@ -25,9 +25,9 @@ def test_finops_cost_calculation():
     assert cost_gemini > 0.0
     assert cost_gemini < 0.05  # Altíssima eficiência econômica
 
-    # Custo no GPT-4o (baseline proprietário caro)
-    cost_gpt4 = calcular_custo_tokens(prompt_tokens, completion_tokens, "gpt-4o")
-    assert cost_gpt4 > cost_gemini
+    # Custo no GPT 5.6 Luna (baseline proprietário de fronteira)
+    cost_baseline = calcular_custo_tokens(prompt_tokens, completion_tokens, "gpt-5.6-luna")
+    assert cost_baseline > cost_gemini
 
     # Auditoria FinOps
     metrics = auditar_finops(prompt_tokens, completion_tokens, "gemini-3.8-flash")
