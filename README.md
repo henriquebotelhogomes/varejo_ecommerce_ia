@@ -179,7 +179,7 @@ flowchart TD
 ### 1. Pré-requisitos
 * **Python 3.11+**
 * **Node.js 18+** e **npm**
-* Gerenciador de pacotes **`uv`** (recomendado) ou `pip`
+* Gerenciador de pacotes **`uv`** (obrigatório)
 * Chave de API Google Gemini (`GEMINI_API_KEY`) ou OpenCode Go / OpenRouter
 
 ### 2. Execução do Backend
@@ -229,12 +229,12 @@ npm run dev
 npm run build
 ```
 
-### 4. URLs de Acesso
+### 5. URLs de Acesso
 
 | Serviço | URL | Finalidade |
 | :--- | :--- | :--- |
-| ** Produção Online (Google Cloud Run)** | [https://retailsense-ai-197215016090.us-central1.run.app](https://retailsense-ai-197215016090.us-central1.run.app) | **Aplicação Fullstack em Produção (Scale-to-Zero $0.00/mês)** |
-| ** Scalar Docs Online** | [https://retailsense-ai-197215016090.us-central1.run.app/docs](https://retailsense-ai-197215016090.us-central1.run.app/docs) | Documentação interativa OpenAPI em produção |
+| **Produção Online (Google Cloud Run)** | [https://retailsense-ai-197215016090.us-central1.run.app](https://retailsense-ai-197215016090.us-central1.run.app) | **Aplicação Fullstack em Produção (Scale-to-Zero $0.00/mês)** |
+| **Scalar Docs Online** | [https://retailsense-ai-197215016090.us-central1.run.app/docs](https://retailsense-ai-197215016090.us-central1.run.app/docs) | Documentação interativa OpenAPI em produção |
 | **Aplicação Local (Frontend SPA)** | [http://localhost:5173](http://localhost:5173) | Painel Executivo, Console NL2SQL com streaming e FinOps |
 | **Backend API Local** | [http://localhost:8000](http://localhost:8000) | Endpoints locais de saúde, orquestração e dados |
 | **Scalar API Docs Local** | [http://localhost:8000/docs](http://localhost:8000/docs) | Documentação viva interativa local |
@@ -246,17 +246,22 @@ npm run build
 
 ```bash
 # 1. Executar suíte completa de testes automatizados (35 testes)
-pytest tests/ -v
+uv run pytest tests/ -v
 
-# 2. Linting e formatação estrita com Ruff
-ruff check .
-ruff format .
+# 2. Linting e checagem estrita com Ruff
+uv run ruff check .
 
-# 3. Compilação e checagem de tipos estáticos no frontend
+# 3. Formatação de código com Ruff
+uv run ruff format .
+
+# 4. Checagem completa de tipos e hooks de pré-commit
+uv run pre-commit run --all-files
+
+# 5. Compilação e checagem de tipos estáticos no frontend
 cd frontend && npm run build
 
-# 4. Avaliação de assertividade Ragas (LLM-as-a-Judge)
-pytest tests/evals/test_ragas.py -v
+# 6. Avaliação de assertividade Ragas (LLM-as-a-Judge)
+uv run pytest tests/evals/test_ragas.py -v
 ```
 
 ---
